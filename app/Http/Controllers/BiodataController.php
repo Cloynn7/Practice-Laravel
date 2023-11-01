@@ -18,8 +18,8 @@ class BiodataController extends Controller
             'name' => 'required|min:3|max:255',
             'gender' => 'required',
             'birth' => 'required|date',
-            'email' => 'required|email:dns',
-            'no_hp' => 'required|numeric',
+            'email' => 'required|email:dns|unique:biodatas,email',
+            'no_hp' => 'required|numeric|unique:biodatas,no_hp',
             'alamat' => 'required|max:255'
         ]);
 
