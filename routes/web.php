@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AreaController;
-use App\Http\Controllers\BiodataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BiodataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,9 @@ Route::post('/cariluas', [AreaController::class, 'hitungLuas'])->name('hitung.lu
 
 Route::get('/biodata', [BiodataController::class, 'index'])->name('biodata.index');
 Route::post('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
+
+Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+Route::get('/register', [AuthController::class, 'registerView'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
