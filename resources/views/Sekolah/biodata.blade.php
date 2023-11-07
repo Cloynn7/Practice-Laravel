@@ -2,12 +2,11 @@
 
 @section('title', 'Biodata')
 @section('form')
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-    @endif
-
+    @endif --}}
     <form action="{{ route('biodata.create') }}" method="POST">
         @csrf
         <div class="row mb-3">
@@ -19,7 +18,6 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
 
         <div class="row mb-3">
             <label for="gender" class="col-sm-4 col-form-label">Gender</label>

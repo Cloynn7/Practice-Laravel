@@ -1,0 +1,102 @@
+@extends('Sekolah.template')
+
+@if (isset($validated))
+    @section('title', 'Hasil Input Biodata')
+    @else
+@section('title', 'Biodata')
+@endif
+
+@section('form')
+    @if (isset($validated))
+        @foreach ($validated as $data => $value)
+            <div class="row mb-3">
+                <label for="no_hp" class="col-sm-4 col-form-label">{{ $data }}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" disabled value="{{ $value }}">
+                </div>
+            </div>
+        @endforeach
+        <a href="{{ route('biodata.index') }}">Back</a>
+    @else
+        <form action="{{ route('biodata.create') }}" method="POST">
+            @csrf
+            <div class="row mb-3">
+                <label for="name" class="col-sm-4 col-form-label">Nama Lengkap</label>
+                <div class="col-sm-8">
+                    <input type="text" name="name" class="form-control" id="name" required
+                        value="{{ old('name') }}">
+                </div>
+                @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="row mb-3">
+                <label for="gender" class="col-sm-4 col-form-label">Gender</label>
+                <div class="col-sm-8">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="laki-laki" value="laki-laki"
+                            required {{ old('gender') == 'laki-laki' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="laki-laki">
+                            Laki-laki
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="perempuan" value="perempuan"
+                            required {{ old('gender') == 'perempuan' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="perempuan">
+                            Perempuan
+                        </label>
+                    </div>
+                </div>
+                @error('gender')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="row mb-3">
+                <label for="birth" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                <div class="col-sm-8">
+                    <input type="date" name="birth" class="form-control" id="birth" required
+                        value="{{ old('birth') }}">
+                </div>
+                @error('birth')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="row mb-3">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="email" name="email" class="form-control" id="email" required
+                        value="{{ old('email') }}">
+                </div>
+                @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="row mb-3">
+                <label for="no_hp" class="col-sm-4 col-form-label">No HP/Telp</label>
+                <div class="col-sm-8">
+                    <input type="number" name="no_hp" class="form-control" id="no_hp" required
+                        value="{{ old('no_hp') }}">
+                </div>
+                @error('no_hp')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="row mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <textarea class="form-control" id="alamat" rows="3" name="alamat" required>{{ old('alamat') }}</textarea>
+                @error('alamat')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            {{-- <button type="reset" class="btn btn-primary">Reset</button> --}}
+        </form>
+    @endif
+@endsection
