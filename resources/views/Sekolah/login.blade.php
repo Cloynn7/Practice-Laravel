@@ -3,6 +3,12 @@
 
 @section('form')
     <form action="{{ route('login.post') }}" method="POST">
+        @if (session('register_success'))
+            <div class="alert alert-success">
+                {{ session('register_success') }}
+            </div>
+        @endif
+        
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>

@@ -54,6 +54,6 @@ class AuthController extends Controller
         ]);
 
         User::create($credentials);
-        return redirect()->route('login')->with('success', "Register successful, please login {$credentials['name']}");
+        return redirect()->route('login')->with('register_success', "Register successful, please login {$credentials['name']}");
     }
 }
