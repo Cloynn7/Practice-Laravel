@@ -28,6 +28,6 @@ class BiodataController extends Controller
         // Biodata::create($validated);
         // return redirect()->route('biodata.index')->with('success', 'Biodata has been added successfully.');
         // return view('Sekolah.hasilbiodata', $validated); //2 page
-        return view('Sekolah.biodata2')->with('validated', $validated);; //1 page only
+        return view('Sekolah.biodata2', compact('validated')); //1 page only
     }
 }
